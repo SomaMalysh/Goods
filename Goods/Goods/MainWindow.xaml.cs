@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
 
 namespace Goods
 {
@@ -23,6 +24,13 @@ namespace Goods
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void New_Category_Click(object sender, RoutedEventArgs e)
+        {
+            String s = Microsoft.VisualBasic.Interaction.InputBox("Введіть нову категорію");
+            if (s.Trim() == "")
+                return;
         }
     }
 }
