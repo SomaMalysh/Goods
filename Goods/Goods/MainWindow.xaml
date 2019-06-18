@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Goods"
         mc:Ignorable="d"
         Title="Goods" Height="450" Width="800">
-    <TabControl HorizontalAlignment="Stretch" Name="tcMain" VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+    <TabControl HorizontalAlignment="Stretch" Name="tabCtrl" VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
         <TabItem Header="Про програму">
             <Grid Background="#FFE5E5E5">
                 <TextBlock HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Тут буде якась корисна (і не дуже) інформація" VerticalAlignment="Center" FontSize="18"/>
@@ -47,7 +47,36 @@
             </Grid>
         </TabItem>
         <TabItem Header="Переглянути товар">
-            <Grid Background="#FFE5E5E5"/>
+            <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                   
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="*"/>
+                    
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Категорія" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,10,0"></TextBlock>
+                <ComboBox Grid.Column="1" Grid.Row="1" Name="vcbCat" SelectionChanged="VcbCat_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,100,0" ></ComboBox>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Товар" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,10,0"></TextBlock>
+                <ComboBox Grid.Column="1" Grid.Row="2" Name="vcbItem" SelectionChanged="VcbItem_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,100,0" ></ComboBox>
+                <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Name="vgGoods" ItemsSource="{Binding GoodsBinding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="20">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Count" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Storage" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Maded" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Valid" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
         </TabItem>
         <TabItem Header="Редагувати товар">
             <Grid Background="#FFE5E5E5"/>
