@@ -1,7 +1,6 @@
 C:\Users\fishm\projects\Goods\Goods\Goods\bin\Debug\Goods.exe.config
 C:\Users\fishm\projects\Goods\Goods\Goods\bin\Debug\Goods.exe
 C:\Users\fishm\projects\Goods\Goods\Goods\bin\Debug\Goods.pdb
-C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods.csprojAssemblyReference.cache
 C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\MainWindow.g.cs
 C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\App.g.cs
 C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods_MarkupCompile.cache
@@ -13,3 +12,4 @@ C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods.csproj.GenerateResourc
 C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods.csproj.CoreCompileInputs.cache
 C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods.exe
 C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods.pdb
+C:\Users\fishm\projects\Goods\Goods\Goods\obj\Debug\Goods.csprojAssemblyReference.cache
