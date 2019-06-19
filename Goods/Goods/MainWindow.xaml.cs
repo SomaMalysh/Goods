@@ -26,15 +26,23 @@ namespace Goods
         {
             InitializeComponent();
 
+            #if DEBUG
             tabCtrl.SelectedIndex = 2;
+            #endif
 
-            vcbCat.Items.Add("Category1");
-            vcbCat.Items.Add("Category2");
-            vcbCat.Items.Add("Category3");
-            vcbCat.Items.Add("Category4");
+            File f = new File("Goods.txt");
+            foreach (string s in f.GetCategories())
+                vcbCat.Items.Add(s);
 
+            try
+            {
+                vcbCat.SelectedIndex = 0;
+                VcbCat_SelectionChanged(vcbCat, null);
+            }
+            catch
+            {
 
-
+            }
         }
 
         private void New_Category_Click(object sender, RoutedEventArgs e)
@@ -47,11 +55,17 @@ namespace Goods
         private void VcbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             vcbItem.Items.Clear();
-            vcbItem.Items.Add(vcbCat.SelectedValue + " - Goods1");
-            vcbItem.Items.Add(vcbCat.SelectedValue + " - Goods2");
-            vcbItem.Items.Add(vcbCat.SelectedValue + " - Goods3");
-            vcbItem.Items.Add(vcbCat.SelectedValue + " - Goods4");
-            vcbItem.SelectedIndex = 0;
+            File f = new File("Goods.txt");
+            foreach (string s in f.GetGoods(vcbCat.SelectedValue.ToString()))
+                vcbItem.Items.Add(s);
+            try
+            {
+                vcbItem.SelectedIndex = 0;
+            }
+            catch
+            {
+
+            }
         }
 
         private void VcbItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
