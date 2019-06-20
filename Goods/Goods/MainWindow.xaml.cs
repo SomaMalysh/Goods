@@ -74,7 +74,7 @@ namespace Goods
         {
             vgGoods.Items.Clear();
             File f = new File("Goods.txt");
-            foreach (ClassGoods g in f.GetAllGoods(vcbCat.SelectedIndex == 0 ? "" : vcbCat.SelectedValue.ToString(), vcbItem.SelectedIndex == 0 ? "" : vcbItem.SelectedValue.ToString()))
+            foreach (ClassGoods g in f.GetAllGoods(vcbCat.SelectedIndex == 0 | vcbCat.SelectedValue == null ? "" : vcbCat.SelectedValue.ToString(), vcbItem.SelectedIndex == 0 | vcbItem.SelectedValue == null ? "" : vcbItem.SelectedValue.ToString()))
                 vgGoods.Items.Add(g);
         }
     }
