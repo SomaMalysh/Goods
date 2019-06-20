@@ -68,11 +68,19 @@
                 <ComboBox Grid.Column="1" Grid.Row="2" Name="vcbItem" SelectionChanged="VcbItem_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,100,0" ></ComboBox>
                 <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Name="vgGoods" ItemsSource="{Binding GoodsBinding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="20">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Count" Binding="{Binding Path=Name}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Storage" Binding="{Binding Path=Name}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Maded" Binding="{Binding Path=Name}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Valid" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=_id}"></DataGridTextColumn>
+                        <!--<DataGridTextColumn Header="Name" Binding="{Binding Path=_name}"></DataGridTextColumn>-->
+                        <!--<DataGridTextColumn Header="Category" Binding="{Binding Path=_category}"></DataGridTextColumn>-->
+                        <DataGridTextColumn Header="Createion date" Binding="{Binding Path=_creation_date}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Valid date" Binding="{Binding Path=_valid_date}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Count" Binding="{Binding Path=_count}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=_price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Provider" Binding="{Binding Path=_provider}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Provider Phone" Binding="{Binding Path=_provider_phone}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Date_in" Binding="{Binding Path=_date_in}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Storage" Binding="{Binding Path=_storage}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Short description" Binding="{Binding Path=_short_description}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Note" Binding="{Binding Path=_note}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 

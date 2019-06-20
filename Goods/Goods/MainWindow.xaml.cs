@@ -33,11 +33,11 @@ namespace Goods
             File f = new File("Goods.txt");
             foreach (string s in f.GetCategories())
                 vcbCat.Items.Add(s);
-
+            vcbCat.Items.Insert(0, "Всі");
             try
             {
                 vcbCat.SelectedIndex = 0;
-                VcbCat_SelectionChanged(vcbCat, null);
+                //VcbCat_SelectionChanged(vcbCat, null);
             }
             catch
             {
@@ -58,9 +58,11 @@ namespace Goods
             File f = new File("Goods.txt");
             foreach (string s in f.GetGoods(vcbCat.SelectedValue.ToString()))
                 vcbItem.Items.Add(s);
+            vcbItem.Items.Insert(0, "Всі");
             try
             {
                 vcbItem.SelectedIndex = 0;
+                //VcbItem_SelectionChanged(vcbItem, null);
             }
             catch
             {
@@ -71,10 +73,9 @@ namespace Goods
         private void VcbItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             vgGoods.Items.Clear();
-            //var data = new { ID = "0", Name = "Name 1" };
-            vgGoods.Items.Add(new { ID = "0", Name = "Name 1" });
-            //data = new Goods { ID = "1", Name = "Name 2" };
-            vgGoods.Items.Add(new { ID = "1", Name = "Name 2" });
+            File f = new File("Goods.txt");
+            foreach (ClassGoods g in f.GetAllGoods(vcbCat.SelectedIndex == 0 ? "" : vcbCat.SelectedValue.ToString(), vcbItem.SelectedIndex == 0 ? "" : vcbItem.SelectedValue.ToString()))
+                vgGoods.Items.Add(g);
         }
     }
 }
