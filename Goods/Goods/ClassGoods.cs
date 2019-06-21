@@ -170,5 +170,15 @@ namespace Goods
         {
 
         }
+        
+        public string ToStringWithoutId()
+        {
+            return _name + "; " + _category + "; " + _creation_date + "; " + _valid_date + "; " + _count + "; " + _price + "; " + _provider + "; " + _provider_phone + "; " + _date_in + "; " + _storage + "; " + _short_description + "; " + _note + " ";
+        }
+
+        public string ToStringWithId()
+        {
+            return _id + "; " + _name + "; " + _category + "; " + _creation_date + "; " + _valid_date + "; " + _count + "; " + _price + "; " + _provider + "; " + _provider_phone + "; " + _date_in + "; " + _storage + "; " + _short_description + "; " + _note + " ";
+        }
     }    
 }

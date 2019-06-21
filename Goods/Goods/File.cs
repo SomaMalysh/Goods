@@ -113,5 +113,54 @@ namespace Goods
             return g_list;
         }
 
+
+        public void AddNewGoodsToStorage(ClassGoods goods)
+        {
+            if (!System.IO.File.Exists(file))
+                throw new Exception("File not exists!");
+            string line;
+            int max_index = 0;
+            using (StreamReader reader = new StreamReader(file))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    int g_id;
+                    g_id = Convert.ToInt32(GetLineIndex(line, FileLineIdx.idxId));
+                    if (g_id > max_index)
+                        max_index = g_id;
+                }
+                string add_g = (max_index+1).ToString() + "; " + goods.ToStringWithoutId() + Environment.NewLine;
+                System.IO.File.AppendAllText(file, add_g);
+            }
+        }
+
+        public void RemoveGoods(int id_for_remove)
+        {
+            List<ClassGoods> g_list = new List<ClassGoods>();
+            g_list = GetAllGoods();
+            int index = -1;
+            foreach (ClassGoods g in g_list)
+            {
+                if (Convert.ToInt32(g._id) == id_for_remove)
+                {
+                    index = g_list.IndexOf(g);
+                    break;
+                }
+            }
+            g_list.RemoveAt(index);
+
+            if (!System.IO.File.Exists(file))
+                throw new Exception("File not exists!");
+            using (StreamWriter clear = new StreamWriter(file, false))
+                clear.WriteLine("");
+            using (StreamWriter writer = new StreamWriter(file, false))
+            {
+                foreach (ClassGoods g in g_list)
+                {
+                    string add_g = g.ToStringWithId() + Environment.NewLine;
+                    writer.Write(add_g);
+                }
+            }
+        }
     }
 }
