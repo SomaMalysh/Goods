@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualBasic;
 
 namespace Goods
 {
@@ -29,10 +28,6 @@ namespace Goods
             Main.AllGoodsID = new List<GoodsID>();
             Main.AllProviders = new List<ProviderID>();
             Main.AllGoodsDB = new List<ClassGoods>();
-
-            #if DEBUG
-            tabCtrl.SelectedIndex = 2;
-            #endif
 
             File.ReadAllFiles();
             Main.explainGoodsDB();
@@ -51,12 +46,12 @@ namespace Goods
             }
         }
 
-        private void New_Category_Click(object sender, RoutedEventArgs e)
-        {
-            String s = Microsoft.VisualBasic.Interaction.InputBox("Введіть нову категорію");
-            if (s.Trim() == "")
-                return;
-        }
+        //private void New_Category_Click(object sender, RoutedEventArgs e)
+        //{
+        //    String s = Microsoft.VisualBasic.Interaction.InputBox("Введіть нову категорію");
+        //    if (s.Trim() == "")
+        //        return;
+        //}
 
         private void VcbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -80,6 +75,36 @@ namespace Goods
             vgGoods.Items.Clear();
             foreach (ClassGoods g in Main.GetAllGoods(vcbCat.SelectedIndex == 0 | vcbCat.SelectedValue == null ? "" : vcbCat.SelectedValue.ToString(), vcbItem.SelectedIndex == 0 | vcbItem.SelectedValue == null ? "" : vcbItem.SelectedValue.ToString()))
                 vgGoods.Items.Add(g);
+            try
+            {
+                vgGoods.SelectedIndex = 0;
+                //VcbItem_SelectionChanged(vcbItem, null);
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditWindow w = new AddEditWindow();
+            w.ShowDialog();
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            ClassGoods g = (ClassGoods)vgGoods.SelectedItem;
+            AddEditWindow w = new AddEditWindow();
+            w.GName.Text = g._name;
+            w.Title = "Редагувати товар";
+            w.AddEditButton.Content = "Зберегти";
+            w.ShowDialog();
+        }
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
