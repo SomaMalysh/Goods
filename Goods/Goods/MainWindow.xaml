@@ -69,9 +69,9 @@
                 <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Name="vgGoods" ItemsSource="{Binding GoodsBinding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="20">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Path=_id}"></DataGridTextColumn>
-                        <!--<DataGridTextColumn Header="Name" Binding="{Binding Path=_name}"></DataGridTextColumn>-->
-                        <!--<DataGridTextColumn Header="Category" Binding="{Binding Path=_category}"></DataGridTextColumn>-->
-                        <DataGridTextColumn Header="Createion date" Binding="{Binding Path=_creation_date}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=_name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Category" Binding="{Binding Path=_category}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Creation date" Binding="{Binding Path=_creation_date}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Valid date" Binding="{Binding Path=_valid_date}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Count" Binding="{Binding Path=_count}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Price" Binding="{Binding Path=_price}"></DataGridTextColumn>

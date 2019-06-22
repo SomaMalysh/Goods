@@ -26,12 +26,18 @@ namespace Goods
         {
             InitializeComponent();
 
+            Main.AllGoodsID = new List<GoodsID>();
+            Main.AllProviders = new List<ProviderID>();
+            Main.AllGoodsDB = new List<ClassGoods>();
+
             #if DEBUG
             tabCtrl.SelectedIndex = 2;
             #endif
 
-            File f = new File("Goods.txt");
-            foreach (string s in f.GetCategories())
+            File.ReadAllFiles();
+            Main.explainGoodsDB();
+
+            foreach (string s in Main.GetCategoryNames())
                 vcbCat.Items.Add(s);
             vcbCat.Items.Insert(0, "Всі");
             try
@@ -55,8 +61,7 @@ namespace Goods
         private void VcbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             vcbItem.Items.Clear();
-            File f = new File("Goods.txt");
-            foreach (string s in f.GetGoods(vcbCat.SelectedValue.ToString()))
+            foreach (string s in Main.GetGoodNames(vcbCat.SelectedValue.ToString()))
                 vcbItem.Items.Add(s);
             vcbItem.Items.Insert(0, "Всі");
             try
@@ -73,8 +78,7 @@ namespace Goods
         private void VcbItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             vgGoods.Items.Clear();
-            File f = new File("Goods.txt");
-            foreach (ClassGoods g in f.GetAllGoods(vcbCat.SelectedIndex == 0 | vcbCat.SelectedValue == null ? "" : vcbCat.SelectedValue.ToString(), vcbItem.SelectedIndex == 0 | vcbItem.SelectedValue == null ? "" : vcbItem.SelectedValue.ToString()))
+            foreach (ClassGoods g in Main.GetAllGoods(vcbCat.SelectedIndex == 0 | vcbCat.SelectedValue == null ? "" : vcbCat.SelectedValue.ToString(), vcbItem.SelectedIndex == 0 | vcbItem.SelectedValue == null ? "" : vcbItem.SelectedValue.ToString()))
                 vgGoods.Items.Add(g);
         }
     }

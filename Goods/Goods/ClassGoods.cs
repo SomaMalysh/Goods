@@ -21,6 +21,21 @@ namespace Goods
         string storage;
         string short_description;
         string note;
+        public string goodsID;
+        public string providerID;
+
+        public ClassGoods(string fileLine)
+        {
+            string[] ar = Main.line2Ar(fileLine);
+            id = ar[0];
+            goodsID = ar[1];
+            creation_date = ar[2];
+            count = ar[3];
+            price = ar[4];
+            providerID = ar[5];
+            date_in = ar[6];
+            storage = ar[7];
+        }
 
         public string _id
         {
