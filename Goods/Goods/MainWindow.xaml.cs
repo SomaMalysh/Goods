@@ -18,9 +18,52 @@ namespace Goods
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
+    public struct SelectedGoods
+    {
+        string cat, goods;
+        int gridItem;
+
+        public SelectedGoods(string cat, string goods, int gridItem)
+        {
+            this.cat = cat;
+            this.goods = goods;
+            this.gridItem = gridItem;
+        }
+
+        public void Restore()
+        {
+            MainWindow w = Application.Current.MainWindow as MainWindow;
+            try
+            {
+                w.vcbCat.SelectedIndex = w.vcbCat.Items.IndexOf(this.cat);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                w.vcbItem.SelectedIndex = w.vcbItem.Items.IndexOf(this.goods);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                w.vgGoods.SelectedIndex = this.gridItem;
+            }
+            catch
+            {
+
+            }
+        }
+    }
 
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -118,7 +161,10 @@ namespace Goods
             w.Note.Text = g._note;
             w.Title = "Редагувати товар";
             w.AddEditButton.Content = "Зберегти";
+            SelectedGoods s = new SelectedGoods(vcbCat.SelectedValue.ToString(), vcbItem.SelectedValue.ToString(), vgGoods.SelectedIndex);
             w.ShowDialog();
+            s.Restore();
+            vgGoods.Focus();
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
