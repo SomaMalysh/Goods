@@ -49,6 +49,11 @@ namespace Goods
                     Main.AllGoodsDB.Add(new ClassGoods(line));
         }
 
+        public static void WriteAllFiles()
+        {
+
+        }
+
         //public string GetLineIndex(string line, FileLineIdx idx)
         //{
         //    string[] ar = line.Split(';');
@@ -60,42 +65,6 @@ namespace Goods
         //    {
         //        return "";
         //    }
-        //}
-
-        //public List<string> GetCategories()
-        //{
-        //    if (!System.IO.File.Exists(file))
-        //        throw new Exception("File not exists!");
-        //    string line, cat;
-        //    List<string> l = new List<string>();
-        //    using (StreamReader reader = new StreamReader(file))
-        //        while ((line = reader.ReadLine()) != null)
-        //        {
-        //            cat = GetLineIndex(line, FileLineIdx.idxCategory);
-        //            if (l.IndexOf(cat) == -1 & cat != "")
-        //                l.Add(cat);
-        //        }
-        //    l.Sort();
-        //    return l;
-        //}
-
-        //public List<string> GetGoods(string cat)
-        //{
-        //    if (!System.IO.File.Exists(file))
-        //        throw new Exception("File not exists!");
-        //    string line, goods, fcat;
-        //    List<string> l = new List<string>();
-        //    using (StreamReader reader = new StreamReader(file))
-        //        while ((line = reader.ReadLine()) != null)
-        //        {
-        //            fcat = GetLineIndex(line, FileLineIdx.idxCategory);
-        //            goods = GetLineIndex(line, FileLineIdx.idxName);
-        //            if (fcat == cat)
-        //                if (l.IndexOf(goods) == -1 & goods != "")
-        //                    l.Add(goods);
-        //        }
-        //    l.Sort();
-        //    return l;
         //}
         
         //public List<ClassGoods> GetAllGoods(string cat = "", string goo = "")

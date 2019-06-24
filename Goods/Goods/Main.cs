@@ -36,6 +36,14 @@ namespace Goods
             return new ProviderID();
         }
 
+        public static string GetProviderPhoneByID(string id)
+        {
+            foreach (ProviderID g in AllProviders)
+                if (g.id == id)
+                    return g.phone;
+            return "";
+        }
+
         public static void explainGoodsDB()
         {
             GoodsID g;
@@ -54,7 +62,7 @@ namespace Goods
             }
         }
 
-        public static List<string> GetCategoryNames()
+        public static List<string> GetUnicCategories()
         {
             List<string> l = new List<string>();
             
@@ -65,7 +73,7 @@ namespace Goods
             return l;
         }
 
-        public static List<string> GetGoodNames(string cat = "")
+        public static List<string> GetUnicGoods(string cat = "")
         {
             List<string> l = new List<string>();
             foreach (ClassGoods g in AllGoodsDB)
@@ -84,6 +92,46 @@ namespace Goods
                 if ((cat == "" | cat == g._category) & (goo == "" | goo == g._name))
                     l.Add(g);
             return l;
+        }
+
+        public static void FillAddEditCategories(AddEditWindow f, string selected = "")
+        {
+            f.Category.Items.Clear();
+            foreach (ClassGoods g in AllGoodsDB)
+                if (f.Category.Items.IndexOf(g._category) == -1)
+                    f.Category.Items.Add(g._category);
+            if (selected != "")
+                f.Category.SelectedIndex = f.Category.Items.IndexOf(selected);
+        }
+
+        public static void FillAddEditValidDate(AddEditWindow f, string selected = "")
+        {
+            f.Valid.Items.Clear();
+            foreach (ClassGoods g in AllGoodsDB)
+                if (f.Valid.Items.IndexOf(g._valid_date) == -1)
+                    f.Valid.Items.Add(g._valid_date);
+            if (selected != "")
+                f.Valid.SelectedIndex = f.Valid.Items.IndexOf(selected);
+        }
+
+        public static void FillAddEditProvider(AddEditWindow f, string selected = "")
+        {
+            f.Provider.Items.Clear();
+            foreach (ProviderID g in AllProviders)
+                if (f.Provider.Items.IndexOf(g.name) == -1)
+                    f.Provider.Items.Add(g.name);
+            if (selected != "")
+                f.Provider.SelectedIndex = f.Provider.Items.IndexOf(selected);
+        }
+
+        public static void FillAddEditStorage(AddEditWindow f, string selected = "")
+        {
+            f.Storage.Items.Clear();
+            foreach (ClassGoods g in AllGoodsDB)
+                if (f.Storage.Items.IndexOf(g._storage) == -1)
+                    f.Storage.Items.Add(g._storage);
+            if (selected != "")
+                f.Storage.SelectedIndex = f.Storage.Items.IndexOf(selected);
         }
     }
 }

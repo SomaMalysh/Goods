@@ -31,17 +31,17 @@
                 <DataGrid Grid.Column="0" IsReadOnly="True" SelectionMode="Single" Grid.Row="3" Grid.ColumnSpan="2" Name="vgGoods" ItemsSource="{Binding GoodsBinding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="20">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Path=_id}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Path=_name}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Category" Binding="{Binding Path=_category}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Creation date" Binding="{Binding Path=_creation_date}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Valid date" Binding="{Binding Path=_valid_date}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Count" Binding="{Binding Path=_count}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Path=_price}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Provider" Binding="{Binding Path=_provider}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Provider Phone" Binding="{Binding Path=_provider_phone}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Date_in" Binding="{Binding Path=_date_in}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Storage" Binding="{Binding Path=_storage}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Short description" Binding="{Binding Path=_short_description}" Width="*">
+                        <DataGridTextColumn Header="Назва" Binding="{Binding Path=_name}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Категорія" Binding="{Binding Path=_category}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата виготовлення" Binding="{Binding Path=_creation_date}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Термін придатності" Binding="{Binding Path=_valid_date}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кількість" Binding="{Binding Path=_count}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ціна" Binding="{Binding Path=_price}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Постачальник" Binding="{Binding Path=_provider}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер постачальника" Binding="{Binding Path=_provider_phone}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата надходження" Binding="{Binding Path=_date_in}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Склад" Binding="{Binding Path=_storage}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Примітки" Binding="{Binding Path=_short_description}" Width="*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -49,12 +49,12 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Note" Binding="{Binding Path=_note}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Нотатки" Binding="{Binding Path=_note}" Width="auto"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Grid.Column="1" Grid.Row="7" Margin="0,0,20,0" Content="Add new" HorizontalAlignment="Right" Width="100" Click="New_Click"></Button>
-                <Button Grid.Column="0" Grid.Row="7" Margin="20,0,0,0" Content="Edit" HorizontalAlignment="Left" Width="100" Click="Edit_Click"></Button>
-                <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="130,0,0,0" Content="Remove" HorizontalAlignment="Left" Width="100" Click="Remove_Click"></Button>
+                <Button Grid.Column="1" Grid.Row="7" Margin="0,0,20,0" Content="Додати" HorizontalAlignment="Right" Width="100" Click="New_Click"></Button>
+                <Button Grid.Column="0" Grid.Row="7" Margin="20,0,0,0" Content="Змінити" HorizontalAlignment="Left" Width="100" Click="Edit_Click"></Button>
+                <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="130,0,0,0" Content="Видалити" HorizontalAlignment="Left" Width="100" Click="Remove_Click"></Button>
             </Grid>
        
 

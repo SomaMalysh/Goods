@@ -32,13 +32,18 @@ namespace Goods
             File.ReadAllFiles();
             Main.explainGoodsDB();
 
-            foreach (string s in Main.GetCategoryNames())
+            FillCategoryCombobox();
+        }
+
+        public void FillCategoryCombobox()
+        {
+            vcbCat.Items.Clear();
+            foreach (string s in Main.GetUnicCategories())
                 vcbCat.Items.Add(s);
             vcbCat.Items.Insert(0, "Всі");
             try
             {
                 vcbCat.SelectedIndex = 0;
-                //VcbCat_SelectionChanged(vcbCat, null);
             }
             catch
             {
@@ -46,23 +51,16 @@ namespace Goods
             }
         }
 
-        //private void New_Category_Click(object sender, RoutedEventArgs e)
-        //{
-        //    String s = Microsoft.VisualBasic.Interaction.InputBox("Введіть нову категорію");
-        //    if (s.Trim() == "")
-        //        return;
-        //}
-
         private void VcbCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             vcbItem.Items.Clear();
-            foreach (string s in Main.GetGoodNames(vcbCat.SelectedValue.ToString()))
+            string sel = vcbCat.SelectedValue == null ? "" : vcbCat.SelectedValue.ToString();
+            foreach (string s in Main.GetUnicGoods(sel))
                 vcbItem.Items.Add(s);
             vcbItem.Items.Insert(0, "Всі");
             try
             {
                 vcbItem.SelectedIndex = 0;
-                //VcbItem_SelectionChanged(vcbItem, null);
             }
             catch
             {
@@ -78,7 +76,6 @@ namespace Goods
             try
             {
                 vgGoods.SelectedIndex = 0;
-                //VcbItem_SelectionChanged(vcbItem, null);
             }
             catch
             {
@@ -89,6 +86,14 @@ namespace Goods
         private void New_Click(object sender, RoutedEventArgs e)
         {
             AddEditWindow w = new AddEditWindow();
+            w.Owner = Application.Current.MainWindow;
+            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;   
+            Main.FillAddEditCategories(w);
+            Main.FillAddEditValidDate(w);  
+            Main.FillAddEditProvider(w); 
+            Main.FillAddEditStorage(w);
+            w.Title = "Додати товар";
+            w.AddEditButton.Content = "Додати";
             w.ShowDialog();
         }
 
@@ -96,7 +101,21 @@ namespace Goods
         {
             ClassGoods g = (ClassGoods)vgGoods.SelectedItem;
             AddEditWindow w = new AddEditWindow();
+            w.editingID = g._id;
+            w.Owner = Application.Current.MainWindow;
+            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             w.GName.Text = g._name;
+            Main.FillAddEditCategories(w, g._category);
+            Main.FillAddEditValidDate(w, g._valid_date);
+            w.MadeDate.Text = g._creation_date;
+            w.Count.Text = g._count;
+            w.Price.Text = g._price;
+            Main.FillAddEditProvider(w, g._provider);
+            w.ProviderPhone.Text = g._provider_phone;
+            w.InDate.Text = g._date_in;
+            Main.FillAddEditStorage(w, g._storage);
+            w.Desc.Text = g._short_description;
+            w.Note.Text = g._note;
             w.Title = "Редагувати товар";
             w.AddEditButton.Content = "Зберегти";
             w.ShowDialog();

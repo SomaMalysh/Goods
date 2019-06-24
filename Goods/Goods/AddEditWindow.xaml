@@ -28,7 +28,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Text="Ім'я" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"></TextBlock>
         <TextBlock Grid.Row="2" Text="Категорія" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"></TextBlock>
@@ -46,15 +46,27 @@
         <TextBox Grid.Row="1" Grid.Column="1" Name="GName" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
         <ComboBox Grid.Row="2" Grid.Column="1" Name="Category" IsEditable="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ComboBox>
         <ComboBox Grid.Row="3" Grid.Column="1" Name="Valid" IsEditable="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ComboBox>
-        <DatePicker Grid.Row="4" Grid.Column="1" Name="MadeDate" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></DatePicker>
+        <DatePicker Grid.Row="4" Grid.Column="1" Name="MadeDate" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Text" Value="Вкажіть дату"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
         <TextBox Grid.Row="5" Grid.Column="1" Name="Count" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
         <TextBox Grid.Row="6" Grid.Column="1" Name="Price" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
-        <ComboBox Grid.Row="7" Grid.Column="1" Name="Provider" IsEditable="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ComboBox>
+        <ComboBox Grid.Row="7" Grid.Column="1" Name="Provider" IsEditable="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="Provider_SelectionChanged"></ComboBox>
         <TextBox Grid.Row="8" Grid.Column="1" Name="ProviderPhone" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
-        <DatePicker Grid.Row="9" Grid.Column="1" Name="InDate" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></DatePicker>
+        <DatePicker Grid.Row="9" Grid.Column="1" Name="InDate" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Text" Value="Вкажіть дату"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
         <ComboBox Grid.Row="10" Grid.Column="1" Name="Storage" IsEditable="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ComboBox>
         <TextBox Grid.Row="11" Grid.Column="1" Name="Desc" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></TextBox>
         <TextBox Grid.Row="12" Grid.Column="1" Name="Note" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinLines="3" TextWrapping="Wrap"></TextBox>
-        <Button Grid.Row="14" Grid.Column="1" Name="AddEditButton" VerticalAlignment="Stretch" HorizontalAlignment="Right" Content="Додати" Width="150"></Button>
+        <Button Grid.Row="14" Grid.Column="1" Name="AddEditButton" VerticalAlignment="Stretch" HorizontalAlignment="Right" Content="Додати" Width="150" Click="AddEditButton_Click"></Button>
     </Grid>
 </Window>

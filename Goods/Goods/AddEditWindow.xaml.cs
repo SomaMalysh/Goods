@@ -19,14 +19,29 @@ namespace Goods
     /// </summary>
     public partial class AddEditWindow : Window
     {
+        public string editingID = "-1";
         public AddEditWindow()
         {
             InitializeComponent();
         }
 
-        private void New_VAlidDate_Click(object sender, RoutedEventArgs e)
+        private void Provider_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (ProviderID p in Main.AllProviders)
+                if ((sender as ComboBox).SelectedItem.ToString() == p.name)
+                {
+                    this.ProviderPhone.Text = p.phone;
+                    break;
+                }
+        }
+
+        private void AddEditButton_Click(object sender, RoutedEventArgs e)
         {
 
+            AddEditButton.IsEnabled = false;
+            (Owner as MainWindow).FillCategoryCombobox();
+            File.WriteAllFiles();
+            this.Close();
         }
     }
 }
