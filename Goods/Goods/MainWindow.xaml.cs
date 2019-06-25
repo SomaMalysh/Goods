@@ -169,7 +169,9 @@ namespace Goods
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassGoods g = (ClassGoods)vgGoods.SelectedItem;
+            //g._id; або g, тобто items.indexOf()
+            //Main.AllGoodsDB
         }
     }
 }

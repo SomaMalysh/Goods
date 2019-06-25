@@ -33,13 +33,13 @@
                         <DataGridTextColumn Header="ID" Binding="{Binding Path=_id}" Width="auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Назва" Binding="{Binding Path=_name}" Width="auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Категорія" Binding="{Binding Path=_category}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата виготовлення" Binding="{Binding Path=_creation_date}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Термін придатності" Binding="{Binding Path=_valid_date}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Кількість" Binding="{Binding Path=_count}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата виг." Binding="{Binding Path=_creation_date}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Термін пр-сті" Binding="{Binding Path=_valid_date}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="К-сть" Binding="{Binding Path=_count}" Width="auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Ціна" Binding="{Binding Path=_price}" Width="auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Постачальник" Binding="{Binding Path=_provider}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Номер постачальника" Binding="{Binding Path=_provider_phone}" Width="auto"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Дата надходження" Binding="{Binding Path=_date_in}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="№ телефону" Binding="{Binding Path=_provider_phone}" Width="auto"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Дата надх." Binding="{Binding Path=_date_in}" Width="auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Склад" Binding="{Binding Path=_storage}" Width="auto"></DataGridTextColumn>
                         <DataGridTextColumn Header="Примітки" Binding="{Binding Path=_short_description}" Width="*">
                             <DataGridTextColumn.ElementStyle>
