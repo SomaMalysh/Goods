@@ -142,6 +142,9 @@ namespace Goods
             new_p.name = new_p_name;
             new_p.phone = new_p_num;
             AllProviders.Add(new_p);
+            /*
+             * тут буде виклик перезапису файлу з постачальниками
+            */
             return new_p.id;
         }
 
@@ -156,6 +159,9 @@ namespace Goods
             new_g.short_description = new_g_short_description;
             new_g.note = new_g_note;
             AllGoodsID.Add(new_g);
+            /*
+             * тут буде виклик перезапису файлу з базою товарів
+            */
             return new_g.id;
         }
 
@@ -199,7 +205,9 @@ namespace Goods
             goods_to_add._storage = n_goods._storage;
 
             AllGoodsDB.Add(goods_to_add);
-
+            /*
+             * тут буде виклик перезапису файлу з товарами на складі
+            */
             return goods_to_add._id;
         }
 
