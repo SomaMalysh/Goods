@@ -37,6 +37,23 @@ namespace Goods
             storage = ar[7];
         }
 
+        public ClassGoods(string id, string name, string category, string creation_date, string valid_date, string count, string price, string provider, string provider_phone, string date_in, string storage, string short_description, string note)
+        {
+            this.id = id;
+            this.name = name;
+            this.category = category;
+            this.creation_date = creation_date;
+            this.valid_date = valid_date;
+            this.count = count;
+            this.price = price;
+            this.provider = provider;
+            this.provider_phone = provider_phone;
+            this.date_in = date_in;
+            this.storage = storage;
+            this.short_description = short_description;
+            this.note = note;
+        }
+
         public string _id
         {
             set

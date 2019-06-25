@@ -133,5 +133,79 @@ namespace Goods
             if (selected != "")
                 f.Storage.SelectedIndex = f.Storage.Items.IndexOf(selected);
         }
+
+        public static string AddNewProviderToDB(string new_p_name, string new_p_num)
+        {
+            ProviderID new_p = new ProviderID();
+            int amount = AllProviders.Count;
+            new_p.id = (amount + 1).ToString();
+            new_p.name = new_p_name;
+            new_p.phone = new_p_num;
+            AllProviders.Add(new_p);
+            return new_p.id;
+        }
+
+        public static string AddNewGoodsIDToDB(string new_g_name, string new_g_category, string new_g_valid_date, string new_g_short_description, string new_g_note)
+        {
+            GoodsID new_g = new GoodsID();
+            int amount = AllGoodsID.Count;
+            new_g.id = (amount + 1).ToString();
+            new_g.name = new_g_name;
+            new_g.category = new_g_category;
+            new_g.valid_date = new_g_valid_date;
+            new_g.short_description = new_g_short_description;
+            new_g.note = new_g_note;
+            AllGoodsID.Add(new_g);
+            return new_g.id;
+        }
+
+        public static string AddNewGoodsToDB(ClassGoods n_goods)
+        {
+            ClassGoods goods_to_add = new ClassGoods();
+            string p_id = "";
+            string g_id = "";
+            bool flag_p = false;
+            bool flag_g = false;
+
+            foreach (ProviderID p in AllProviders)
+                if (p.name == n_goods._provider && p.phone == n_goods._provider_phone)
+                {
+                    flag_p = true;
+                    p_id = p.id;
+                    break;
+                }
+            if (flag_p == false)
+                p_id = AddNewProviderToDB(n_goods._provider, n_goods._provider_phone);
+
+            foreach (GoodsID g in AllGoodsID)
+                if (g.name == n_goods._name && g.category == n_goods._category && g.valid_date == n_goods._valid_date && g.short_description == n_goods._short_description && g.note == n_goods._note)
+                {
+                    flag_g = true;
+                    g_id = g.id;
+                    break;
+                }
+            if (flag_g == false)
+                g_id = AddNewGoodsIDToDB(n_goods._name, n_goods._category, n_goods._valid_date, n_goods._short_description, n_goods._note);
+
+            int amount = AllGoodsDB.Count;
+
+            goods_to_add._id = (amount+1).ToString();
+            goods_to_add.goodsID = g_id;
+            goods_to_add._creation_date = n_goods._category;
+            goods_to_add._count = n_goods._count;
+            goods_to_add._price = n_goods._price;
+            goods_to_add.providerID = p_id;
+            goods_to_add._date_in = n_goods._date_in;
+            goods_to_add._storage = n_goods._storage;
+
+            AllGoodsDB.Add(goods_to_add);
+
+            return goods_to_add._id;
+        }
+
+        public static void EditGoods(ClassGoods n_goods)
+        {
+            
+        }
     }
 }
