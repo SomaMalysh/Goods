@@ -193,7 +193,7 @@ namespace Goods
             return id;
         }
 
-        public static string AddNewGoodsToDB(ClassGoods n_goods)    //приймає об'єкт класу ClassGoods в якому заповнені всі поля крім providerID і goodsID
+        public static string AddNewGoodsToDB(ClassGoods n_goods)    //приймає об'єкт класу ClassGoods в якому заповнені всі поля крім id, providerID і goodsID
         {
             ClassGoods goods_to_add = new ClassGoods();
             string p_id = СheckProvider(n_goods._provider, n_goods._provider_phone);
@@ -217,7 +217,31 @@ namespace Goods
 
         public static void EditGoods(ClassGoods n_goods)    //приймає об'єкт класу ClassGoods в якому заповнені всі поля крім providerID і goodsID
         {
-            
+            ClassGoods goods_to_edit = new ClassGoods();
+            string p_id = СheckProvider(n_goods._provider, n_goods._provider_phone);
+            string g_id = CheckGoods(n_goods._name, n_goods._category, n_goods._valid_date, n_goods._short_description, n_goods._note);
+
+            goods_to_edit._id = n_goods._id;
+            goods_to_edit.goodsID = g_id;
+            goods_to_edit._creation_date = n_goods._category;
+            goods_to_edit._count = n_goods._count;
+            goods_to_edit._price = n_goods._price;
+            goods_to_edit.providerID = p_id;
+            goods_to_edit._date_in = n_goods._date_in;
+            goods_to_edit._storage = n_goods._storage;
+
+            int index = -1;
+            foreach (ClassGoods g in AllGoodsDB)
+            {
+                if (g._id == goods_to_edit._id)
+                {
+                    index = AllGoodsDB.IndexOf(g);
+                    break;
+                }
+            }
+            AllGoodsDB[index] = goods_to_edit;
+
+            File.RefreshGoodsDBFile();
         }
     }
 }

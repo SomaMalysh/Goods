@@ -54,6 +54,18 @@ namespace Goods
             this.note = note;
         }
 
+        public ClassGoods(ClassGoods obj)
+        {
+            id = obj.id;
+            goodsID = obj.goodsID;
+            creation_date = obj.category;
+            count = obj.count;
+            price = obj.price;
+            providerID = obj.providerID;
+            date_in = obj.date_in;
+            storage = obj.storage;
+        }
+
         public string _id
         {
             set
@@ -203,7 +215,7 @@ namespace Goods
 
         }
         
-        public string ToStringWithoutId()
+        /*public string ToStringWithoutId()
         {
             return _name + "; " + _category + "; " + _creation_date + "; " + _valid_date + "; " + _count + "; " + _price + "; " + _provider + "; " + _provider_phone + "; " + _date_in + "; " + _storage + "; " + _short_description + "; " + _note + " ";
         }
@@ -211,7 +223,7 @@ namespace Goods
         public string ToStringWithId()
         {
             return _id + "; " + _name + "; " + _category + "; " + _creation_date + "; " + _valid_date + "; " + _count + "; " + _price + "; " + _provider + "; " + _provider_phone + "; " + _date_in + "; " + _storage + "; " + _short_description + "; " + _note + " ";
-        }
+        }*/
 
         public string ToStringGoodsID()
         {
