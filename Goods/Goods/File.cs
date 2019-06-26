@@ -49,6 +49,48 @@ namespace Goods
                     Main.AllGoodsDB.Add(new ClassGoods(line));
         }
 
+        public static void RefreshProviderFile()
+        {
+            using (StreamWriter clear = new StreamWriter(fileProviders, false))
+                clear.WriteLine("");
+            using (StreamWriter writer = new StreamWriter(fileProviders, false))
+            {
+                foreach (ProviderID provider in Main.AllProviders)
+                {
+                    string add_g = provider.ToStringWithId() + Environment.NewLine;
+                    writer.Write(add_g);
+                }
+            }
+        }
+
+        public static void RefreshGoodsIDFile()
+        {
+            using (StreamWriter clear = new StreamWriter(fileGoodsID, false))
+                clear.WriteLine("");
+            using (StreamWriter writer = new StreamWriter(fileGoodsID, false))
+            {
+                foreach (GoodsID goods in Main.AllGoodsID)
+                {
+                    string add_g = goods.ToStringGoodsID() + Environment.NewLine;
+                    writer.Write(add_g);
+                }
+            }
+        }
+
+        public static void RefreshGoodsDBFile()
+        {
+            using (StreamWriter clear = new StreamWriter(fileGoodsDB, false))
+                clear.WriteLine("");
+            using (StreamWriter writer = new StreamWriter(fileGoodsDB, false))
+            {
+                foreach (ClassGoods goods in Main.AllGoodsDB)
+                {
+                    string add_g = goods.ToStringGoodsID() + Environment.NewLine;
+                    writer.Write(add_g);
+                }
+            }
+        }
+
         public static void WriteAllFiles()
         {
 

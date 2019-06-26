@@ -24,5 +24,10 @@ namespace Goods
             name = ar[1];
             phone = ar[2];
         }
+
+        public string ToStringWithId()
+        {
+            return id + "; " + name + "; " + phone + " ";
+        }
     }
 }

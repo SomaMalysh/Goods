@@ -142,9 +142,7 @@ namespace Goods
             new_p.name = new_p_name;
             new_p.phone = new_p_num;
             AllProviders.Add(new_p);
-            /*
-             * тут буде виклик перезапису файлу з постачальниками
-            */
+            File.RefreshProviderFile();
             return new_p.id;
         }
 
@@ -159,43 +157,51 @@ namespace Goods
             new_g.short_description = new_g_short_description;
             new_g.note = new_g_note;
             AllGoodsID.Add(new_g);
-            /*
-             * тут буде виклик перезапису файлу з базою товарів
-            */
+            File.RefreshGoodsIDFile();
             return new_g.id;
         }
 
-        public static string AddNewGoodsToDB(ClassGoods n_goods)
+        public static string СheckProvider(string provider, string provider_phone)
+        {
+            string id = "";
+            bool flag = false;
+            foreach (ProviderID p in AllProviders)
+                if (p.name == provider && p.phone == provider_phone)
+                {
+                    flag = true;
+                    id = p.id;
+                    break;
+                }
+            if (flag == false)
+                id = AddNewProviderToDB(provider, provider_phone);
+            return id;
+        }
+
+        public static string CheckGoods(string name, string category, string valid_date, string short_description, string note)
+        {
+            string id = "";
+            bool flag = false;
+            foreach (GoodsID g in AllGoodsID)
+                if (g.name == name && g.category == category && g.valid_date == valid_date && g.short_description == short_description && g.note == note)
+                {
+                    flag = true;
+                    id = g.id;
+                    break;
+                }
+            if (flag == false)
+                id = AddNewGoodsIDToDB(name, category, valid_date, short_description, note);
+            return id;
+        }
+
+        public static string AddNewGoodsToDB(ClassGoods n_goods)    //приймає об'єкт класу ClassGoods в якому заповнені всі поля крім providerID і goodsID
         {
             ClassGoods goods_to_add = new ClassGoods();
-            string p_id = "";
-            string g_id = "";
-            bool flag_p = false;
-            bool flag_g = false;
-
-            foreach (ProviderID p in AllProviders)
-                if (p.name == n_goods._provider && p.phone == n_goods._provider_phone)
-                {
-                    flag_p = true;
-                    p_id = p.id;
-                    break;
-                }
-            if (flag_p == false)
-                p_id = AddNewProviderToDB(n_goods._provider, n_goods._provider_phone);
-
-            foreach (GoodsID g in AllGoodsID)
-                if (g.name == n_goods._name && g.category == n_goods._category && g.valid_date == n_goods._valid_date && g.short_description == n_goods._short_description && g.note == n_goods._note)
-                {
-                    flag_g = true;
-                    g_id = g.id;
-                    break;
-                }
-            if (flag_g == false)
-                g_id = AddNewGoodsIDToDB(n_goods._name, n_goods._category, n_goods._valid_date, n_goods._short_description, n_goods._note);
+            string p_id = СheckProvider(n_goods._provider, n_goods._provider_phone);
+            string g_id = CheckGoods(n_goods._name, n_goods._category, n_goods._valid_date, n_goods._short_description, n_goods._note);
 
             int amount = AllGoodsDB.Count;
 
-            goods_to_add._id = (amount+1).ToString();
+            goods_to_add._id = (AllGoodsDB[amount-1]._id + 1).ToString();
             goods_to_add.goodsID = g_id;
             goods_to_add._creation_date = n_goods._category;
             goods_to_add._count = n_goods._count;
@@ -205,13 +211,11 @@ namespace Goods
             goods_to_add._storage = n_goods._storage;
 
             AllGoodsDB.Add(goods_to_add);
-            /*
-             * тут буде виклик перезапису файлу з товарами на складі
-            */
+            File.RefreshGoodsDBFile();
             return goods_to_add._id;
         }
 
-        public static void EditGoods(ClassGoods n_goods)
+        public static void EditGoods(ClassGoods n_goods)    //приймає об'єкт класу ClassGoods в якому заповнені всі поля крім providerID і goodsID
         {
             
         }

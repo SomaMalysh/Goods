@@ -30,5 +30,10 @@ namespace Goods
             short_description = ar[4];
             note = ar.Length == 6 ? ar[5] : "-";
         }
+
+        public string ToStringGoodsID()
+        {
+            return id + "; " + name + "; " + category + "; " + valid_date + "; " + short_description + "; " + note + " ";
+        }
     }
 }
