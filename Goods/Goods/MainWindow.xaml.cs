@@ -169,6 +169,7 @@ namespace Goods
             g._note = w.Note.Text;
 
             Main.AddNewGoodsToDB(g);
+            VcbItem_SelectionChanged(vcbItem, null);
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
@@ -209,6 +210,7 @@ namespace Goods
             g._note = w.Note.Text;
 
             Main.EditGoods(g);
+            VcbItem_SelectionChanged(vcbItem, null);
 
             s.Restore();
             vgGoods.Focus();
