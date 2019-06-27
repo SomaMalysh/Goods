@@ -139,7 +139,8 @@ namespace Goods
         {
             ProviderID new_p = new ProviderID();
             int amount = AllProviders.Count;
-            new_p.id = (amount + 1).ToString();
+            int new_id = Convert.ToInt32(AllProviders[amount - 1].id) + 1;
+            new_p.id = (new_id).ToString();
             new_p.name = new_p_name;
             new_p.phone = new_p_num;
             AllProviders.Add(new_p);
@@ -151,7 +152,8 @@ namespace Goods
         {
             GoodsID new_g = new GoodsID();
             int amount = AllGoodsID.Count;
-            new_g.id = (amount + 1).ToString();
+            int new_id = Convert.ToInt32(AllGoodsID[amount - 1].id) + 1;
+            new_g.id = (new_id).ToString();
             new_g.name = new_g_name;
             new_g.category = new_g_category;
             new_g.valid_date = new_g_valid_date;
@@ -201,10 +203,11 @@ namespace Goods
             string g_id = CheckGoods(n_goods._name, n_goods._category, n_goods._valid_date, n_goods._short_description, n_goods._note);
 
             int amount = AllGoodsDB.Count;
+            int new_id = Convert.ToInt32(AllGoodsDB[amount - 1]._id) + 1;
 
-            goods_to_add._id = (AllGoodsDB[amount-1]._id + 1).ToString();
+            goods_to_add._id = new_id.ToString();
             goods_to_add.goodsID = g_id;
-            goods_to_add._creation_date = n_goods._category;
+            goods_to_add._creation_date = n_goods._creation_date;
             goods_to_add._count = n_goods._count;
             goods_to_add._price = n_goods._price;
             goods_to_add.providerID = p_id;
@@ -224,7 +227,7 @@ namespace Goods
 
             goods_to_edit._id = n_goods._id;
             goods_to_edit.goodsID = g_id;
-            goods_to_edit._creation_date = n_goods._category;
+            goods_to_edit._creation_date = n_goods._creation_date;
             goods_to_edit._count = n_goods._count;
             goods_to_edit._price = n_goods._price;
             goods_to_edit.providerID = p_id;
