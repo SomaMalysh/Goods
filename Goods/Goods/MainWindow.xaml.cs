@@ -18,7 +18,7 @@ namespace Goods
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
+
     public struct SelectedGoods
     {
         string cat, goods;
@@ -61,6 +61,18 @@ namespace Goods
         }
     }
 
+    public struct reportItems
+    {
+        public int col;
+        public string val;
+
+        public reportItems(int col, string val)
+        {
+            this.col = col;
+            this.val = val;
+        }
+    }
+
     public partial class MainWindow : Window
     {
 
@@ -71,6 +83,7 @@ namespace Goods
             Main.AllGoodsID = new List<GoodsID>();
             Main.AllProviders = new List<ProviderID>();
             Main.AllGoodsDB = new List<ClassGoods>();
+            Main.reportFilter = new List<reportItems>();
 
             File.ReadAllFiles();
             Main.explainGoodsDB();
@@ -124,6 +137,8 @@ namespace Goods
             {
 
             }
+            Application.Current.MainWindow.UpdateLayout();
+            doFilterGrid();
         }
 
         private void New_Click(object sender, RoutedEventArgs e)
@@ -172,6 +187,117 @@ namespace Goods
             ClassGoods g = (ClassGoods)vgGoods.SelectedItem;
             //g._id; або g, тобто items.indexOf()
             //Main.AllGoodsDB
+        }
+
+        private void populateReportItems()
+        {
+            reportText.Text = "";
+            TextBlock t, t0;
+            Hyperlink h;
+            for (int i = 0; i < Main.reportFilter.Count; i++)
+            {
+                t0 = new TextBlock();
+                t0.Text = "(";
+                t = new TextBlock();
+                t.Text = ") "+ vgGoods.Columns[Main.reportFilter[i].col].Header + " = " + Main.reportFilter[i].val + (i == Main.reportFilter.Count-1 ? "" : ", ");
+                h = new Hyperlink();
+                h.Inlines.Add("Видалити");
+                h.Tag = i;
+                h.Click += removeReportItem_Click;
+                reportText.Inlines.Add(t0);
+                reportText.Inlines.Add(h);
+                reportText.Inlines.Add(t);
+            }
+        }
+
+        private void removeReportItem_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink h = sender as Hyperlink;
+            Main.reportFilter.RemoveAt((int)h.Tag);
+            populateReportItems();
+            VcbItem_SelectionChanged(vcbItem, null);
+            //doFilterGrid();
+        }
+
+        private void smi_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem m = sender as MenuItem;
+            Main.reportFilter.Add(new reportItems((int)m.Tag, m.Header.ToString()));
+            populateReportItems();
+            VcbItem_SelectionChanged(vcbItem, null);
+            //doFilterGrid();
+        }
+
+        private void addUnicColToMenuItem(int col, MenuItem mi)
+        {
+            List<string> l = new List<string>();
+            TextBlock x;
+            for (int i = 0; i < vgGoods.Items.Count; i++) {
+                x = vgGoods.Columns[col].GetCellContent(vgGoods.Items[i]) as TextBlock;
+                if (l.IndexOf(x.Text) == -1)
+                {
+                    l.Add(x.Text);
+                }
+            }
+            l.Sort();
+            MenuItem smi;
+            foreach (string s2 in l)
+            {
+                smi = new MenuItem();
+                smi.Header = s2;
+                smi.Tag = col;
+                smi.Click += smi_Click;
+                mi.Items.Add(smi);
+            }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenu cm = new ContextMenu();
+            MenuItem mi;
+            bool b;
+            for (int i = 3; i < vgGoods.Columns.Count; i++)
+            {
+                b = false;
+                for (int i2 = 0; i2 < Main.reportFilter.Count; i2++)
+                    if (Main.reportFilter[i2].col == i)
+                        b = true;
+                if (!b)
+                    {
+                        mi = new MenuItem();
+                        mi.Header = vgGoods.Columns[i].Header;
+                        addUnicColToMenuItem(i, mi);
+                        cm.Items.Add(mi);
+                    }
+            }
+
+            cm.PlacementTarget = addRuleText;
+            cm.IsOpen = true;
+        }
+
+        private void doFilterGrid()
+        {
+
+            if (Main.reportFilter.Count == 0)
+                return;
+            int i = vgGoods.Items.Count;
+            int b;
+            TextBlock x;
+            while (i > 0)
+            {
+                b = 0;
+                for (int i2 = 0; i2 < Main.reportFilter.Count; i2++)
+                {
+                    x = vgGoods.Columns[Main.reportFilter[i2].col].GetCellContent(vgGoods.Items[i-1]) as TextBlock;
+                    if (x.Text == Main.reportFilter[i2].val)
+                        b++;
+                }
+                if (b != Main.reportFilter.Count)
+                {
+                    vgGoods.Items.RemoveAt(i-1);
+                } 
+                i--; 
+            }
         }
     }
 }

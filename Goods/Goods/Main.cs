@@ -11,6 +11,7 @@ namespace Goods
         public static List<GoodsID> AllGoodsID;
         public static List<ProviderID> AllProviders;
         public static List<ClassGoods> AllGoodsDB;
+        public static List<reportItems> reportFilter;
 
         public static string[] line2Ar(string line)
         {
