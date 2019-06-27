@@ -153,6 +153,22 @@ namespace Goods
             w.Title = "Додати товар";
             w.AddEditButton.Content = "Додати";
             w.ShowDialog();
+
+            ClassGoods g = new ClassGoods();
+            g._name = w.GName.Text;
+            g._category = w.Category.Text;
+            g._valid_date = w.Valid.Text;
+            g._creation_date = w.MadeDate.Text;
+            g._count = w.Count.Text;
+            g._price = w.Price.Text;
+            g._provider = w.Provider.Text;
+            g._provider_phone = w.ProviderPhone.Text;
+            g._date_in = w.InDate.Text;
+            g._storage = w.Storage.Text;
+            g._short_description = w.Desc.Text;
+            g._note = w.Note.Text;
+
+            Main.AddNewGoodsToDB(g);
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
@@ -178,6 +194,22 @@ namespace Goods
             w.AddEditButton.Content = "Зберегти";
             SelectedGoods s = new SelectedGoods(vcbCat.SelectedValue.ToString(), vcbItem.SelectedValue.ToString(), vgGoods.SelectedIndex);
             w.ShowDialog();
+
+            g._name = w.GName.Text;
+            g._category = w.Category.Text;
+            g._valid_date = w.Valid.Text;
+            g._creation_date = w.MadeDate.Text;
+            g._count = w.Count.Text;
+            g._price = w.Price.Text;
+            g._provider = w.Provider.Text;
+            g._provider_phone = w.ProviderPhone.Text;
+            g._date_in = w.InDate.Text;
+            g._storage = w.Storage.Text;
+            g._short_description = w.Desc.Text;
+            g._note = w.Note.Text;
+
+            Main.EditGoods(g);
+
             s.Restore();
             vgGoods.Focus();
         }

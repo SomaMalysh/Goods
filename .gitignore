@@ -1,3 +1,6 @@
 Goods/Goods/obj/
 Goods/.vs/
 *.lock
+Goods/Goods/bin/Debug/Goods_db.txt
+Goods/Goods/bin/Debug/Goods_id.txt
+Goods/Goods/bin/Debug/Providers_id.txt
