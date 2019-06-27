@@ -219,8 +219,13 @@ namespace Goods
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             ClassGoods g = (ClassGoods)vgGoods.SelectedItem;
-            //g._id; або g, тобто items.indexOf()
-            //Main.AllGoodsDB
+            MessageBoxResult result = MessageBox.Show("Дійсно видалити товар ID = "+g._id+"?", "Goods", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                Main.AllGoodsDB.RemoveAt(Main.AllGoodsDB.IndexOf(g));
+                VcbItem_SelectionChanged(vcbItem, null);
+                File.RefreshGoodsDBFile();
+            }
         }
 
         private void populateReportItems()
