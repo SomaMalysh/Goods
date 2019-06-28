@@ -39,8 +39,9 @@ namespace Goods
         {
 
             AddEditButton.IsEnabled = false;
-            (Owner as MainWindow).FillCategoryCombobox();
-            File.WriteAllFiles();
+            //(Owner as MainWindow).FillCategoryCombobox();
+            //File.WriteAllFiles();
+            this.DialogResult = true;
             this.Close();
         }
     }

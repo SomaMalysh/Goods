@@ -152,8 +152,14 @@ namespace Goods
             Main.FillAddEditStorage(w);
             w.Title = "Додати товар";
             w.AddEditButton.Content = "Додати";
-            w.ShowDialog();
+            if (!(bool)w.ShowDialog())
+            {
+                vgGoods.Focus();
+                return;
+            }
 
+            Application.Current.MainWindow.UpdateLayout();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
             ClassGoods g = new ClassGoods();
             g._name = w.GName.Text;
             g._category = w.Category.Text;
@@ -169,11 +175,16 @@ namespace Goods
             g._note = w.Note.Text;
 
             Main.AddNewGoodsToDB(g);
-            VcbItem_SelectionChanged(vcbItem, null);
+            FillCategoryCombobox();
+            //VcbItem_SelectionChanged(vcbItem, null);
+            vgGoods.Focus();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            if (vgGoods.SelectedItem == null)
+                return;
             ClassGoods g = (ClassGoods)vgGoods.SelectedItem;
             AddEditWindow w = new AddEditWindow();
             w.editingID = g._id;
@@ -194,8 +205,15 @@ namespace Goods
             w.Title = "Редагувати товар";
             w.AddEditButton.Content = "Зберегти";
             SelectedGoods s = new SelectedGoods(vcbCat.SelectedValue.ToString(), vcbItem.SelectedValue.ToString(), vgGoods.SelectedIndex);
-            w.ShowDialog();
+            //Nullable<bool> dialogResult = w.ShowDialog();
+            if (!(bool)w.ShowDialog())
+            {
+                vgGoods.Focus();
+                return;
+            }
 
+            Application.Current.MainWindow.UpdateLayout();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
             g._name = w.GName.Text;
             g._category = w.Category.Text;
             g._valid_date = w.Valid.Text;
@@ -210,10 +228,12 @@ namespace Goods
             g._note = w.Note.Text;
 
             Main.EditGoods(g);
-            VcbItem_SelectionChanged(vcbItem, null);
+            FillCategoryCombobox();
+            //VcbItem_SelectionChanged(vcbItem, null);
 
             s.Restore();
             vgGoods.Focus();
+            Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
@@ -337,6 +357,11 @@ namespace Goods
                 } 
                 i--; 
             }
+        }
+
+        private void VgGoods_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Edit_Click(sender, null);
         }
     }
 }

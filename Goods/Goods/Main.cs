@@ -45,6 +45,23 @@ namespace Goods
             return "";
         }
 
+        public static void explainGoodsDB(int i)
+        {
+            GoodsID g;
+            ProviderID p;
+            
+            g = GetGoodIDbyID(AllGoodsDB[i].goodsID);
+            AllGoodsDB[i]._name = g.name;
+            AllGoodsDB[i]._category = g.category;
+            AllGoodsDB[i]._valid_date = g.valid_date;
+            AllGoodsDB[i]._short_description = g.short_description;
+            AllGoodsDB[i]._note = g.note;
+            p = GetProviderIDbyID(AllGoodsDB[i].providerID);
+            AllGoodsDB[i]._provider = p.name;
+            AllGoodsDB[i]._provider_phone = p.phone;
+            
+        }
+
         public static void explainGoodsDB()
         {
             GoodsID g;
@@ -215,6 +232,7 @@ namespace Goods
             goods_to_add._storage = n_goods._storage;
 
             AllGoodsDB.Add(goods_to_add);
+            explainGoodsDB(AllGoodsDB.Count-1);
             File.RefreshGoodsDBFile();
             return goods_to_add._id;
         }
@@ -235,15 +253,16 @@ namespace Goods
             goods_to_edit._storage = n_goods._storage;
 
             int index = -1;
-            foreach (ClassGoods g in AllGoodsDB)
+            for (int i = 0; i < AllGoodsDB.Count; i++)
             {
-                if (g._id == goods_to_edit._id)
+                if (AllGoodsDB[i]._id == goods_to_edit._id)
                 {
-                    index = AllGoodsDB.IndexOf(g);
+                    index = i;
                     break;
                 }
             }
             AllGoodsDB[index] = goods_to_edit;
+            explainGoodsDB(index);
 
             File.RefreshGoodsDBFile();
         }
