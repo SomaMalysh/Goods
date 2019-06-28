@@ -178,6 +178,8 @@ namespace Goods
             FillCategoryCombobox();
             //VcbItem_SelectionChanged(vcbItem, null);
             vgGoods.Focus();
+            vgGoods.SelectedIndex = vgGoods.Items.Count - 1;
+            
             Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
 
@@ -245,6 +247,7 @@ namespace Goods
                 Main.AllGoodsDB.RemoveAt(Main.AllGoodsDB.IndexOf(g));
                 VcbItem_SelectionChanged(vcbItem, null);
                 File.RefreshGoodsDBFile();
+                vgGoods.Focus();
             }
         }
 
@@ -293,10 +296,11 @@ namespace Goods
             TextBlock x;
             for (int i = 0; i < vgGoods.Items.Count; i++) {
                 x = vgGoods.Columns[col].GetCellContent(vgGoods.Items[i]) as TextBlock;
-                if (l.IndexOf(x.Text) == -1)
-                {
-                    l.Add(x.Text);
-                }
+                if (x != null)
+                    if (l.IndexOf(x.Text) == -1)
+                    {
+                        l.Add(x.Text);
+                    }
             }
             l.Sort();
             MenuItem smi;
@@ -348,8 +352,9 @@ namespace Goods
                 for (int i2 = 0; i2 < Main.reportFilter.Count; i2++)
                 {
                     x = vgGoods.Columns[Main.reportFilter[i2].col].GetCellContent(vgGoods.Items[i-1]) as TextBlock;
-                    if (x.Text == Main.reportFilter[i2].val)
-                        b++;
+                    if (x != null)
+                        if (x.Text == Main.reportFilter[i2].val)
+                            b++;
                 }
                 if (b != Main.reportFilter.Count)
                 {

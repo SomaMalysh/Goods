@@ -89,10 +89,5 @@ namespace Goods
                 }
             }
         }
-
-        public static void WriteAllFiles()
-        {
-
-        }
     }
 }

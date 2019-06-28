@@ -186,7 +186,7 @@ namespace Goods
             string id = "";
             bool flag = false;
             foreach (ProviderID p in AllProviders)
-                if (p.name == provider && p.phone == provider_phone)
+                if (p.name == provider & p.phone == provider_phone)
                 {
                     flag = true;
                     id = p.id;
@@ -202,7 +202,7 @@ namespace Goods
             string id = "";
             bool flag = false;
             foreach (GoodsID g in AllGoodsID)
-                if (g.name == name && g.category == category && g.valid_date == valid_date && g.short_description == short_description && g.note == note)
+                if (g.name == name & g.category == category & g.valid_date == valid_date & g.short_description == short_description & g.note == note)
                 {
                     flag = true;
                     id = g.id;
