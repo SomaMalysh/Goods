@@ -34,7 +34,7 @@
         </TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,10,0" Name="reportText" TextWrapping="Wrap"></TextBlock>
         
-        <DataGrid Grid.Column="0" IsReadOnly="True" SelectionMode="Single" Grid.Row="4" Grid.ColumnSpan="3" Name="vgGoods" MouseDoubleClick="VgGoods_MouseDoubleClick" ItemsSource="{Binding GoodsBinding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="20">
+        <DataGrid Grid.Column="0" ScrollViewer.CanContentScroll="False" IsReadOnly="True" SelectionMode="Single" Grid.Row="4" Grid.ColumnSpan="3" Name="vgGoods" MouseDoubleClick="VgGoods_MouseDoubleClick" ItemsSource="{Binding GoodsBinding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="20">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=_id}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Назва" Binding="{Binding Path=_name}" Width="auto"></DataGridTextColumn>
